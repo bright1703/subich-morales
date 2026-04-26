@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Subich Morales — Professional Models | Imus, Cavite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #FFFFFF; --off-white: #FAFAF8; --cream: #F5F0E8;
+    --black: #0A0A0A; --charcoal: #1A1A1A; --mid: #6B6B6B;
+    --light: #B0A99A; --gold: #C9A96E; --gold-light: #E8D5B0; --border: #E8E3DC;
+    --serif: 'Playfair Display', Georgia, serif;
+    --alt-serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--white); color: var(--charcoal); font-weight: 300; letter-spacing: 0.01em; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 3rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.18em; color: var(--black); text-transform: uppercase; font-weight: 400; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.25s; }
+  .nav-links a:hover { color: var(--black); }
+  .nav-managed { font-family: var(--alt-serif); font-size: 0.75rem; letter-spacing: 0.18em; color: var(--light); font-style: italic; }
+
+  /* HERO JOINT */
+  .hero-joint { padding-top: 72px; position: relative; height: 100vh; min-height: 600px; overflow: hidden; }
+  .hero-joint img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .hero-joint-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 4rem 2rem; text-align: center; }
+  .hero-joint-eyebrow { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .hero-joint-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 5rem); color: #fff; font-weight: 400; font-style: italic; line-height: 1.1; margin-bottom: 0.75rem; }
+  .hero-joint-sub { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+  /* SPLIT HERO */
+  .hero-split { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-panel { position: relative; overflow: hidden; height: 85vh; min-height: 500px; }
+  .hero-panel img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.8s ease; }
+  .hero-panel:hover img { transform: scale(1.03); }
+  .hero-panel-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.05) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; }
+  .hero-panel-label { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 0.5rem; }
+  .hero-name { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 3rem); color: #fff; line-height: 1.1; font-weight: 400; font-style: italic; }
+
+  /* ABOUT STRIP */
+  .about-strip { background: var(--black); padding: 3.5rem 3rem; display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr; align-items: center; }
+  .about-strip-divider { background: rgba(255,255,255,0.12); align-self: stretch; }
+  .about-item { padding: 1rem 3rem; text-align: center; }
+  .about-item-value { font-family: var(--serif); font-size: 2rem; color: var(--white); font-weight: 400; font-style: italic; }
+  .about-item-label { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--light); margin-top: 0.4rem; }
+
+  /* PROFILES */
+  .profile { padding: 7rem 3rem; }
+  .profile-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+  .profile-inner.reverse { grid-template-columns: 1.6fr 1fr; }
+  .profile-inner.reverse .profile-meta { order: 2; }
+  .profile-inner.reverse .profile-gallery { order: 1; }
+  .profile-meta { position: sticky; top: 100px; }
+  .profile-number { font-family: var(--serif); font-size: 5rem; color: var(--cream); line-height: 1; font-weight: 700; margin-bottom: -1.5rem; }
+  .profile-name-block { border-left: 3px solid var(--gold); padding-left: 1.2rem; margin-bottom: 2rem; }
+  .profile-firstname { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; color: var(--black); line-height: 1.1; }
+  .profile-role { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
+  .profile-bio { font-family: var(--alt-serif); font-size: 1rem; line-height: 1.8; color: var(--mid); font-style: italic; margin-bottom: 1.5rem; }
+  .section-eyebrow { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; font-weight: 500; }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.15; color: var(--black); }
+  .section-title em { font-style: italic; color: var(--mid); }
+  .section-rule { width: 48px; height: 1px; background: var(--gold); margin: 1.5rem 0 2.5rem; }
+
+  /* STATS */
+  .stats-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+  .stats-table tr { border-bottom: 1px solid var(--border); }
+  .stats-table td { padding: 0.75rem 0; font-size: 0.75rem; }
+  .stats-table td:first-child { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); width: 40%; font-weight: 500; }
+
+  /* PHOTO GRID */
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .photo-grid-item { position: relative; overflow: hidden; background: var(--cream); }
+  .photo-grid-item:first-child { grid-column: 1 / -1; aspect-ratio: 4/3; }
+  .photo-grid-item:not(:first-child) { aspect-ratio: 3/4; }
+  .photo-grid-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.6s ease; }
+  .photo-grid-item:hover img { transform: scale(1.05); }
+  .photo-grid-label { position: absolute; bottom: 0.75rem; left: 0.75rem; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.35); padding: 0.25rem 0.6rem; backdrop-filter: blur(4px); }
+
+  /* POLAROIDS */
+  .polaroids-section { background: var(--off-white); padding: 7rem 3rem; }
+  .polaroids-header { max-width: 1300px; margin: 0 auto 4rem; }
+  .polaroids-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; }
+  .polaroids-grid-4 { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .polaroid { background: var(--white); padding: 0.75rem 0.75rem 2.5rem; box-shadow: 0 2px 20px rgba(0,0,0,0.07); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .polaroid:nth-child(odd) { transform: rotate(-1deg); }
+  .polaroid:nth-child(even) { transform: rotate(1deg); }
+  .polaroid:hover { transform: rotate(0deg) translateY(-6px) !important; box-shadow: 0 12px 40px rgba(0,0,0,0.12); position: relative; z-index: 2; }
+  .polaroid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; }
+  .polaroid-name { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; text-align: center; }
+  .polaroid-caption { text-align: center; font-family: var(--alt-serif); font-size: 0.85rem; color: var(--mid); font-style: italic; }
+  .polaroids-divider { max-width: 1300px; margin: 3rem auto; border: none; border-top: 1px dashed var(--border); }
+
+  /* CONTACT */
+  .contact-section { background: var(--black); padding: 8rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .contact-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center top, rgba(201,169,110,0.08) 0%, transparent 70%); pointer-events: none; }
+  .contact-eyebrow { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .contact-title { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 5rem); color: var(--white); font-weight: 400; line-height: 1.1; margin-bottom: 0.5rem; }
+  .contact-title em { font-style: italic; color: var(--gold-light); }
+  .contact-sub { font-family: var(--alt-serif); font-size: 1rem; color: rgba(255,255,255,0.45); font-style: italic; margin-bottom: 3.5rem; }
+  .contact-managed { display: inline-block; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,110,0.3); padding: 0.5rem 1.5rem; margin-bottom: 3rem; }
+  .contact-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; align-items: center; }
+  .contact-link { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-decoration: none; transition: opacity 0.25s; }
+  .contact-link:hover { opacity: 0.7; }
+  .contact-link-label { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--light); }
+  .contact-link-value { font-family: var(--serif); font-size: 1.1rem; color: var(--white); }
+  .contact-separator { color: rgba(255,255,255,0.15); font-size: 1.5rem; }
+  .contact-note { font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.25); max-width: 500px; margin: 0 auto; line-height: 1.8; }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); }
+  .footer-logo { font-family: var(--serif); font-size: 0.85rem; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; }
+  .footer-copy { font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.2); text-transform: uppercase; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .profile-inner, .profile-inner.reverse { grid-template-columns: 1fr; gap: 3rem; }
+    .profile-inner.reverse .profile-meta, .profile-inner.reverse .profile-gallery { order: unset; }
+    .profile-meta { position: static; }
+    .polaroids-grid { grid-template-columns: repeat(3, 1fr); }
+    .polaroids-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .about-strip { grid-template-columns: 1fr; }
+    .about-strip-divider { display: none; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .hero-split { grid-template-columns: 1fr; }
+    .hero-panel { height: 70vw; min-height: 300px; }
+    .profile, .polaroids-section { padding: 4rem 1.5rem; }
+    .contact-section { padding: 5rem 1.5rem; }
+    .polaroids-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .polaroids-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem; }
+    .contact-links { flex-direction: column; gap: 1.5rem; }
+    .contact-separator { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Subich &bull; Morales</div>
+  <ul class="nav-links">
+    <li><a href="#profiles">Profiles</a></li>
+    <li><a href="#polaroids">Polaroids</a></li>
+    <li><a href="#contact">Booking</a></li>
+  </ul>
+  <div class="nav-managed">Managed by Parents</div>
+</nav>
+
+<!-- HERO JOINT -->
+<div class="hero-joint">
+  <img src="images/together-head.jpg" alt="Ivan & Ikaterina Morales Subich" />
+  <div class="hero-joint-overlay">
+    <div class="hero-joint-eyebrow">Brother &amp; Sister · Imus, Cavite</div>
+    <h1 class="hero-joint-title">Ivan &amp; Ikaterina<br />Morales Subich</h1>
+    <div class="hero-joint-sub">Professional Models &nbsp;·&nbsp; Russian · Filipino Heritage</div>
+  </div>
+</div>
+
+<!-- SPLIT HERO -->
+<div class="hero-split">
+  <div class="hero-panel">
+    <img src="images/ivan-portrait.jpg" alt="Ivan Morales Subich" />
+    <div class="hero-panel-overlay">
+      <div class="hero-panel-label">Brother · 16 Years</div>
+      <div class="hero-name">Ivan<br />Morales Subich</div>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <img src="images/ika-portrait.jpg" alt="Ikaterina Morales Subich" />
+    <div class="hero-panel-overlay">
+      <div class="hero-panel-label">Sister · 12 Years</div>
+      <div class="hero-name">Ikaterina<br />Morales Subich</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div class="about-item">
+    <div class="about-item-value">Imus, Cavite</div>
+    <div class="about-item-label">Base City</div>
+  </div>
+  <div class="about-strip-divider"></div>
+  <div class="about-item">
+    <div class="about-item-value">Russian–Filipino</div>
+    <div class="about-item-label">Heritage</div>
+  </div>
+  <div class="about-strip-divider"></div>
+  <div class="about-item">
+    <div class="about-item-value">Available Now</div>
+    <div class="about-item-label">Status</div>
+  </div>
+</div>
+
+<!-- PROFILES -->
+<div id="profiles">
+
+  <!-- IVAN -->
+  <section class="profile" style="background: var(--white);">
+    <div class="profile-inner">
+      <div class="profile-meta">
+        <div class="profile-number">01</div>
+        <div class="section-eyebrow">Male Model</div>
+        <div class="profile-name-block">
+          <div class="profile-firstname">Ivan<br />Morales Subich</div>
+          <div class="profile-role">Editorial · Commercial · Runway</div>
+        </div>
+        <p class="profile-bio">
+          A striking presence with the cool refinement of Eastern European features
+          and the warm, expressive depth of Filipino heritage. Ivan brings
+          natural confidence and versatility across editorial and commercial work.
+        </p>
+        <table class="stats-table">
+          <tr><td>Age</td><td>16 Years</td></tr>
+          <tr><td>Height</td><td>5′ 11″ &nbsp;/&nbsp; 180 cm</td></tr>
+          <tr><td>Eye Color</td><td>Hazel-Green</td></tr>
+          <tr><td>Hair Color</td><td>Dark Brown</td></tr>
+          <tr><td>Shoe Size</td><td>EU 43 / US 10</td></tr>
+          <tr><td>Chest</td><td>36″ / 91 cm</td></tr>
+          <tr><td>Waist</td><td>30″ / 76 cm</td></tr>
+          <tr><td>Languages</td><td>English, Filipino, Russian</td></tr>
+        </table>
+      </div>
+      <div class="profile-gallery">
+        <div class="photo-grid">
+          <div class="photo-grid-item">
+            <img src="images/ivan-portrait.jpg" alt="Ivan — Portrait" />
+            <div class="photo-grid-label">Portrait</div>
+          </div>
+          <div class="photo-grid-item">
+            <img src="images/ivan-fullbody.jpg" alt="Ivan — Full Body" />
+            <div class="photo-grid-label">Full Body</div>
+          </div>
+          <div class="photo-grid-item">
+            <img src="images/ivan-profile.jpg" alt="Ivan — Profile" />
+            <div class="photo-grid-label">Profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IKATERINA -->
+  <section class="profile" style="background: var(--off-white); padding-top: 5rem; padding-bottom: 5rem;">
+    <div class="profile-inner reverse">
+      <div class="profile-gallery">
+        <div class="photo-grid">
+          <div class="photo-grid-item">
+            <img src="images/ika-portrait.jpg" alt="Ikaterina — Portrait" />
+            <div class="photo-grid-label">Portrait</div>
+          </div>
+          <div class="photo-grid-item">
+            <img src="images/ika-fullbody.jpg" alt="Ikaterina — Full Body" />
+            <div class="photo-grid-label">Full Body</div>
+          </div>
+          <div class="photo-grid-item">
+            <img src="images/ika-profile.jpg" alt="Ikaterina — Profile" />
+            <div class="photo-grid-label">Profile</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-meta">
+        <div class="profile-number">02</div>
+        <div class="section-eyebrow">Female Model</div>
+        <div class="profile-name-block">
+          <div class="profile-firstname">Ikaterina<br />Morales Subich</div>
+          <div class="profile-role">Editorial · Junior Fashion · Kids Luxury</div>
+        </div>
+        <p class="profile-bio">
+          Captivating and naturally poised, Ikaterina combines striking mixed-race
+          beauty with an effortless on-camera presence. Already at ease in front
+          of the lens, she is a standout in junior fashion and editorial work.
+        </p>
+        <table class="stats-table">
+          <tr><td>Age</td><td>12 Years</td></tr>
+          <tr><td>Height</td><td>5′ 1″ &nbsp;/&nbsp; 155 cm</td></tr>
+          <tr><td>Eye Color</td><td>Dark Brown</td></tr>
+          <tr><td>Hair Color</td><td>Dark Brown / Straight</td></tr>
+          <tr><td>Shoe Size</td><td>EU 36 / US 5</td></tr>
+          <tr><td>Dress Size</td><td>XS / Junior 10</td></tr>
+          <tr><td>Waist</td><td>24″ / 61 cm</td></tr>
+          <tr><td>Languages</td><td>English, Filipino, Russian</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- POLAROIDS -->
+<section class="polaroids-section" id="polaroids">
+  <div class="polaroids-header">
+    <div class="section-eyebrow">Natural &amp; Unedited</div>
+    <h2 class="section-title">Polaroids<br /><em>&amp; Digitals</em></h2>
+    <div class="section-rule"></div>
+    <p style="font-size:0.75rem;letter-spacing:0.1em;color:var(--mid);max-width:480px;line-height:1.8;">
+      Unretouched reference photos for agency submissions and casting calls.
+      Shot in natural conditions — true to form.
+    </p>
+  </div>
+
+  <!-- IVAN POLAROIDS (5) -->
+  <div class="polaroids-grid" style="margin-bottom: 1rem;">
+    <div class="polaroid">
+      <img src="images/ivan-pol1.jpg" alt="Ivan polaroid 1" />
+      <div class="polaroid-name">Ivan</div>
+      <div class="polaroid-caption">Natural</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ivan-pol2.jpg" alt="Ivan polaroid 2" />
+      <div class="polaroid-name">Ivan</div>
+      <div class="polaroid-caption">Portrait</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ivan-pol3.jpg" alt="Ivan polaroid 3" />
+      <div class="polaroid-name">Ivan</div>
+      <div class="polaroid-caption">Editorial</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ivan-pol4.jpg" alt="Ivan polaroid 4" />
+      <div class="polaroid-name">Ivan</div>
+      <div class="polaroid-caption">Outdoor</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ivan-pol5.jpg" alt="Ivan polaroid 5" />
+      <div class="polaroid-name">Ivan</div>
+      <div class="polaroid-caption">Casual</div>
+    </div>
+  </div>
+
+  <hr class="polaroids-divider" />
+
+  <!-- IKATERINA POLAROIDS (10) -->
+  <div class="polaroids-grid" style="margin-top: 2rem; margin-bottom: 1rem;">
+    <div class="polaroid">
+      <img src="images/ika-pol1.jpg" alt="Ikaterina polaroid 1" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Natural</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol2.jpg" alt="Ikaterina polaroid 2" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Portrait</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol3.jpg" alt="Ikaterina polaroid 3" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Editorial</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol4.jpg" alt="Ikaterina polaroid 4" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Fashion</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol5.jpg" alt="Ikaterina polaroid 5" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Casual</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol6.jpg" alt="Ikaterina polaroid 6" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Street</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol7.jpg" alt="Ikaterina polaroid 7" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Outdoor</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol8.jpg" alt="Ikaterina polaroid 8" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Style</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol9.jpg" alt="Ikaterina polaroid 9" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Lifestyle</div>
+    </div>
+    <div class="polaroid">
+      <img src="images/ika-pol10.jpg" alt="Ikaterina polaroid 10" />
+      <div class="polaroid-name">Ikaterina</div>
+      <div class="polaroid-caption">Natural</div>
+    </div>
+  </div>
+
+  <hr class="polaroids-divider" />
+
+  <!-- TOGETHER POLAROID -->
+  <div class="polaroids-grid-4" style="margin-top: 2rem; max-width: 400px;">
+    <div class="polaroid" style="grid-column: 1 / -1; max-width: 280px; margin: 0 auto;">
+      <img src="images/together-pol.jpg" alt="Ivan & Ikaterina together" />
+      <div class="polaroid-name">Ivan &amp; Ikaterina</div>
+      <div class="polaroid-caption">Together</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-eyebrow">Booking &amp; Inquiries</div>
+  <h2 class="contact-title">Let's<br /><em>Work Together</em></h2>
+  <p class="contact-sub">Open to editorial, commercial, runway &amp; brand collaborations</p>
+  <div class="contact-managed">★ &nbsp; Managed by Parents &nbsp; ★</div>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:subichnimfa@gmail.com">
+      <div class="contact-link-label">Email</div>
+      <div class="contact-link-value">subichnimfa@gmail.com</div>
+    </a>
+    <div class="contact-separator">·</div>
+    <a class="contact-link" href="tel:+639108646112">
+      <div class="contact-link-label">Phone / WhatsApp</div>
+      <div class="contact-link-value">+63 910 864 6112</div>
+    </a>
+    <div class="contact-separator">·</div>
+    <div class="contact-link" style="opacity:0.35;cursor:default;">
+      <div class="contact-link-label">Ivan on Instagram</div>
+      <div class="contact-link-value" style="font-size:0.85rem;">Coming Soon</div>
+    </div>
+    <div class="contact-separator">·</div>
+    <div class="contact-link" style="opacity:0.35;cursor:default;">
+      <div class="contact-link-label">Ikaterina on Instagram</div>
+      <div class="contact-link-value" style="font-size:0.85rem;">Coming Soon</div>
+    </div>
+  </div>
+  <p class="contact-note">
+    All bookings, inquiries, and correspondence are handled directly by the models' parents.<br />
+    Based in Imus, Cavite · Available for local and international projects.<br />
+    For agency representation inquiries, please include a brief &amp; agency credentials.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Subich Morales &nbsp;·&nbsp; Models</div>
+  <div class="footer-copy">Imus, Cavite, Philippines &nbsp;·&nbsp; Managed by Parents &nbsp;·&nbsp; &copy; 2026</div>
+</footer>
+
+</body>
+</html>
