@@ -19,6 +19,21 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: var(--sans); background: var(--white); color: var(--charcoal); font-size: 17px; font-weight: 300; letter-spacing: 0.01em; line-height: 1.55; overflow-x: hidden; }
+  body.locked { background: var(--black); }
+  body.locked .site-shell { visibility: hidden; height: 100vh; overflow: hidden; }
+
+  /* PASSWORD */
+  .password-screen { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 2rem; background: radial-gradient(circle at center top, rgba(201,169,110,0.12), transparent 38%), var(--black); }
+  .password-card { width: min(100%, 420px); text-align: center; color: var(--white); }
+  .password-card h2 { font-family: var(--serif); font-size: clamp(2rem, 8vw, 3.4rem); font-weight: 400; font-style: italic; line-height: 1.05; color: var(--gold-light); margin-bottom: 1rem; }
+  .password-card p { font-size: 0.95rem; letter-spacing: 0.16em; line-height: 1.7; text-transform: uppercase; color: rgba(255,255,255,0.64); margin-bottom: 1.6rem; }
+  .password-form { display: grid; gap: 0.85rem; }
+  .password-input { width: 100%; min-height: 52px; border: 1px solid rgba(201,169,110,0.55); background: rgba(255,255,255,0.06); color: var(--white); font-family: var(--sans); font-size: 1rem; letter-spacing: 0.12em; text-align: center; outline: none; padding: 0.85rem 1rem; }
+  .password-input:focus { border-color: var(--gold-light); }
+  .password-input::placeholder { color: rgba(255,255,255,0.32); }
+  .password-button { min-height: 52px; border: none; background: var(--gold); color: var(--black); font-family: var(--sans); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
+  .password-error { min-height: 1.3rem; color: #ff8f8f; font-size: 0.85rem; letter-spacing: 0.08em; line-height: 1.5; }
+  .password-note { margin-top: 1.4rem; font-size: 0.8rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.34); }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 3rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
@@ -168,7 +183,22 @@
   }
 </style>
 </head>
-<body>
+<body class="locked">
+
+<div class="password-screen" id="password-screen" role="dialog" aria-modal="true" aria-labelledby="password-title">
+  <div class="password-card">
+    <h2 id="password-title">Subich Morales</h2>
+    <p>Private portfolio. Enter password.</p>
+    <form class="password-form" id="password-form">
+      <input class="password-input" id="password-input" type="password" autocomplete="current-password" placeholder="Password" />
+      <button class="password-button" type="submit">Enter</button>
+      <div class="password-error" id="password-error" aria-live="polite"></div>
+    </form>
+    <div class="password-note">Managed by parents</div>
+  </div>
+</div>
+
+<div class="site-shell" id="site-content" aria-hidden="true">
 
 <!-- NAV -->
 <nav>
@@ -184,7 +214,7 @@
 
 <!-- HERO JOINT -->
 <div class="hero-joint">
-  <img src="images/recent/china-russia-052.jpg" alt="Ivan & Ikaterina Morales Subich" data-full="images/recent/china-russia-052.jpg" decoding="async" fetchpriority="high" />
+  <img data-src="images/recent/china-russia-052.jpg" alt="Ivan & Ikaterina Morales Subich" data-full="images/recent/china-russia-052.jpg" decoding="async" fetchpriority="high" />
   <div class="hero-joint-overlay">
     <div class="hero-joint-eyebrow">Brother &amp; Sister · Imus, Cavite</div>
     <h1 class="hero-joint-title">Ivan &amp; Ikaterina / Katya<br />Morales Subich</h1>
@@ -195,14 +225,14 @@
 <!-- SPLIT HERO -->
 <div class="hero-split">
   <div class="hero-panel">
-    <img src="images/recent/china-russia-004.jpg" alt="Ivan Morales Subich" data-full="images/recent/china-russia-004.jpg" loading="lazy" decoding="async" />
+    <img data-src="images/recent/china-russia-004.jpg" alt="Ivan Morales Subich" data-full="images/recent/china-russia-004.jpg" loading="lazy" decoding="async" />
     <div class="hero-panel-overlay">
       <div class="hero-panel-label">Brother · 16 Years</div>
       <div class="hero-name">Ivan / Vanya<br />Morales Subich</div>
     </div>
   </div>
   <div class="hero-panel">
-    <img src="images/recent/china-russia-029.jpg" alt="Ikaterina Morales Subich" data-full="images/recent/china-russia-029.jpg" loading="lazy" decoding="async" />
+    <img data-src="images/recent/china-russia-029.jpg" alt="Ikaterina Morales Subich" data-full="images/recent/china-russia-029.jpg" loading="lazy" decoding="async" />
     <div class="hero-panel-overlay">
       <div class="hero-panel-label">Sister · 12 Years</div>
       <div class="hero-name">Ikaterina / Katya<br />Morales Subich</div>
@@ -260,15 +290,15 @@
       <div class="profile-gallery">
         <div class="photo-grid">
           <div class="photo-grid-item">
-            <img src="images/recent/china-russia-004.jpg" alt="Ivan — Portrait" data-full="images/recent/china-russia-004.jpg" loading="lazy" decoding="async" />
+            <img data-src="images/recent/china-russia-004.jpg" alt="Ivan — Portrait" data-full="images/recent/china-russia-004.jpg" loading="lazy" decoding="async" />
             <div class="photo-grid-label">Portrait</div>
           </div>
           <div class="photo-grid-item">
-            <img src="images/recent/china-russia-042.jpg" alt="Ivan — Full Body" data-full="images/recent/china-russia-042.jpg" loading="lazy" decoding="async" />
+            <img data-src="images/recent/china-russia-042.jpg" alt="Ivan — Full Body" data-full="images/recent/china-russia-042.jpg" loading="lazy" decoding="async" />
             <div class="photo-grid-label">Full Body</div>
           </div>
           <div class="photo-grid-item">
-            <img src="images/recent/china-russia-011.jpg" alt="Ivan — Profile" data-full="images/recent/china-russia-011.jpg" loading="lazy" decoding="async" />
+            <img data-src="images/recent/china-russia-011.jpg" alt="Ivan — Profile" data-full="images/recent/china-russia-011.jpg" loading="lazy" decoding="async" />
             <div class="photo-grid-label">Profile</div>
           </div>
         </div>
@@ -282,15 +312,15 @@
       <div class="profile-gallery">
         <div class="photo-grid">
           <div class="photo-grid-item">
-            <img src="images/recent/china-russia-029.jpg" alt="Ikaterina — Portrait" data-full="images/recent/china-russia-029.jpg" loading="lazy" decoding="async" />
+            <img data-src="images/recent/china-russia-029.jpg" alt="Ikaterina — Portrait" data-full="images/recent/china-russia-029.jpg" loading="lazy" decoding="async" />
             <div class="photo-grid-label">Portrait</div>
           </div>
           <div class="photo-grid-item">
-            <img src="images/recent/china-russia-041.jpg" alt="Ikaterina — Full Body" data-full="images/recent/china-russia-041.jpg" loading="lazy" decoding="async" />
+            <img data-src="images/recent/china-russia-041.jpg" alt="Ikaterina — Full Body" data-full="images/recent/china-russia-041.jpg" loading="lazy" decoding="async" />
             <div class="photo-grid-label">Full Body</div>
           </div>
           <div class="photo-grid-item">
-            <img src="images/recent/china-russia-043.jpg" alt="Ikaterina — Profile" data-full="images/recent/china-russia-043.jpg" loading="lazy" decoding="async" />
+            <img data-src="images/recent/china-russia-043.jpg" alt="Ikaterina — Profile" data-full="images/recent/china-russia-043.jpg" loading="lazy" decoding="async" />
             <div class="photo-grid-label">Profile</div>
           </div>
         </div>
@@ -338,27 +368,27 @@
   <!-- IVAN POLAROIDS (5) -->
   <div class="polaroids-grid" style="margin-bottom: 1rem;">
     <div class="polaroid">
-      <img src="images/ivan-pol1.jpg" alt="Ivan polaroid 1" loading="lazy" decoding="async" />
+      <img data-src="images/ivan-pol1.jpg" alt="Ivan polaroid 1" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ivan</div>
       <div class="polaroid-caption">Natural</div>
     </div>
     <div class="polaroid">
-      <img src="images/ivan-pol2.jpg" alt="Ivan polaroid 2" loading="lazy" decoding="async" />
+      <img data-src="images/ivan-pol2.jpg" alt="Ivan polaroid 2" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ivan</div>
       <div class="polaroid-caption">Portrait</div>
     </div>
     <div class="polaroid">
-      <img src="images/ivan-pol3.jpg" alt="Ivan polaroid 3" loading="lazy" decoding="async" />
+      <img data-src="images/ivan-pol3.jpg" alt="Ivan polaroid 3" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ivan</div>
       <div class="polaroid-caption">Editorial</div>
     </div>
     <div class="polaroid">
-      <img src="images/ivan-pol4.jpg" alt="Ivan polaroid 4" loading="lazy" decoding="async" />
+      <img data-src="images/ivan-pol4.jpg" alt="Ivan polaroid 4" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ivan</div>
       <div class="polaroid-caption">Outdoor</div>
     </div>
     <div class="polaroid">
-      <img src="images/ivan-pol5.jpg" alt="Ivan polaroid 5" loading="lazy" decoding="async" />
+      <img data-src="images/ivan-pol5.jpg" alt="Ivan polaroid 5" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ivan</div>
       <div class="polaroid-caption">Casual</div>
     </div>
@@ -369,52 +399,52 @@
   <!-- IKATERINA POLAROIDS (10) -->
   <div class="polaroids-grid" style="margin-top: 2rem; margin-bottom: 1rem;">
     <div class="polaroid">
-      <img src="images/ika-pol1.jpg" alt="Ikaterina polaroid 1" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol1.jpg" alt="Ikaterina polaroid 1" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Natural</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol2.jpg" alt="Ikaterina polaroid 2" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol2.jpg" alt="Ikaterina polaroid 2" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Portrait</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol3.jpg" alt="Ikaterina polaroid 3" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol3.jpg" alt="Ikaterina polaroid 3" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Editorial</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol4.jpg" alt="Ikaterina polaroid 4" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol4.jpg" alt="Ikaterina polaroid 4" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Fashion</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol5.jpg" alt="Ikaterina polaroid 5" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol5.jpg" alt="Ikaterina polaroid 5" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Casual</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol6.jpg" alt="Ikaterina polaroid 6" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol6.jpg" alt="Ikaterina polaroid 6" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Street</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol7.jpg" alt="Ikaterina polaroid 7" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol7.jpg" alt="Ikaterina polaroid 7" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Outdoor</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol8.jpg" alt="Ikaterina polaroid 8" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol8.jpg" alt="Ikaterina polaroid 8" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Style</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol9.jpg" alt="Ikaterina polaroid 9" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol9.jpg" alt="Ikaterina polaroid 9" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Lifestyle</div>
     </div>
     <div class="polaroid">
-      <img src="images/ika-pol10.jpg" alt="Ikaterina polaroid 10" loading="lazy" decoding="async" />
+      <img data-src="images/ika-pol10.jpg" alt="Ikaterina polaroid 10" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ikaterina</div>
       <div class="polaroid-caption">Natural</div>
     </div>
@@ -425,7 +455,7 @@
   <!-- TOGETHER POLAROID -->
   <div class="polaroids-grid-4" style="margin-top: 2rem; max-width: 400px;">
     <div class="polaroid" style="grid-column: 1 / -1; max-width: 280px; margin: 0 auto;">
-      <img src="images/recent/china-russia-021.jpg" alt="Ivan & Ikaterina together" data-full="images/recent/china-russia-021.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/china-russia-021.jpg" alt="Ivan & Ikaterina together" data-full="images/recent/china-russia-021.jpg" loading="lazy" decoding="async" />
       <div class="polaroid-name">Ivan &amp; Ikaterina</div>
       <div class="polaroid-caption">Together</div>
     </div>
@@ -448,215 +478,215 @@
   </div>
   <div class="recent-grid">
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-001.jpg" alt="Katya - Runway" data-full="images/recent/china-russia-001.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-001.jpg" alt="Katya - Runway" data-full="images/recent/china-russia-001.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Runway</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-002.jpg" alt="Katya & Vanya - Arrival" data-full="images/recent/china-russia-002.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-002.jpg" alt="Katya & Vanya - Arrival" data-full="images/recent/china-russia-002.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Arrival</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-003.jpg" alt="Katya - Moncler" data-full="images/recent/china-russia-003.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-003.jpg" alt="Katya - Moncler" data-full="images/recent/china-russia-003.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Moncler</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-004.jpg" alt="Vanya - Moncler" data-full="images/recent/china-russia-004.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-004.jpg" alt="Vanya - Moncler" data-full="images/recent/china-russia-004.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Moncler</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-005.jpg" alt="Vanya - Portrait" data-full="images/recent/china-russia-005.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-005.jpg" alt="Vanya - Portrait" data-full="images/recent/china-russia-005.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Portrait</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-006.jpg" alt="Vanya - Editorial" data-full="images/recent/china-russia-006.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-006.jpg" alt="Vanya - Editorial" data-full="images/recent/china-russia-006.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Editorial</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-007.jpg" alt="Katya - Hotel" data-full="images/recent/china-russia-007.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-007.jpg" alt="Katya - Hotel" data-full="images/recent/china-russia-007.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Hotel</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-008.jpg" alt="Vanya - Lounge" data-full="images/recent/china-russia-008.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-008.jpg" alt="Vanya - Lounge" data-full="images/recent/china-russia-008.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Lounge</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-009.jpg" alt="Katya - Harbin" data-full="images/recent/china-russia-009.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-009.jpg" alt="Katya - Harbin" data-full="images/recent/china-russia-009.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Harbin</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-010.jpg" alt="Vanya - Harbin" data-full="images/recent/china-russia-010.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-010.jpg" alt="Vanya - Harbin" data-full="images/recent/china-russia-010.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Harbin</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-011.jpg" alt="Vanya - Cathedral" data-full="images/recent/china-russia-011.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-011.jpg" alt="Vanya - Cathedral" data-full="images/recent/china-russia-011.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Cathedral</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-012.jpg" alt="Katya - Cathedral" data-full="images/recent/china-russia-012.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-012.jpg" alt="Katya - Cathedral" data-full="images/recent/china-russia-012.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Cathedral</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-013.jpg" alt="Katya & Vanya - Street" data-full="images/recent/china-russia-013.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-013.jpg" alt="Katya & Vanya - Street" data-full="images/recent/china-russia-013.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Street</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-014.jpg" alt="Katya & Vanya - Boutique" data-full="images/recent/china-russia-014.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-014.jpg" alt="Katya & Vanya - Boutique" data-full="images/recent/china-russia-014.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Boutique</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-015.jpg" alt="Katya - Cathedral" data-full="images/recent/china-russia-015.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-015.jpg" alt="Katya - Cathedral" data-full="images/recent/china-russia-015.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Cathedral</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-016.jpg" alt="Katya & Vanya - City Bus" data-full="images/recent/china-russia-016.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-016.jpg" alt="Katya & Vanya - City Bus" data-full="images/recent/china-russia-016.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - City Bus</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-017.jpg" alt="Vanya - Sightseeing" data-full="images/recent/china-russia-017.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-017.jpg" alt="Vanya - Sightseeing" data-full="images/recent/china-russia-017.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Sightseeing</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-018.jpg" alt="Katya - Street" data-full="images/recent/china-russia-018.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-018.jpg" alt="Katya - Street" data-full="images/recent/china-russia-018.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Street</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-019.jpg" alt="Katya - Candied Fruit" data-full="images/recent/china-russia-019.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-019.jpg" alt="Katya - Candied Fruit" data-full="images/recent/china-russia-019.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Candied Fruit</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-020.jpg" alt="Katya & Vanya - Brick Courtyard" data-full="images/recent/china-russia-020.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-020.jpg" alt="Katya & Vanya - Brick Courtyard" data-full="images/recent/china-russia-020.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Brick Courtyard</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-021.jpg" alt="Katya & Vanya - Market" data-full="images/recent/china-russia-021.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-021.jpg" alt="Katya & Vanya - Market" data-full="images/recent/china-russia-021.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Market</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-022.jpg" alt="Katya & Vanya - Harbin Sign" data-full="images/recent/china-russia-022.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-022.jpg" alt="Katya & Vanya - Harbin Sign" data-full="images/recent/china-russia-022.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Harbin Sign</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-023.jpg" alt="Katya - Airport" data-full="images/recent/china-russia-023.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-023.jpg" alt="Katya - Airport" data-full="images/recent/china-russia-023.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Airport</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-024.jpg" alt="Vanya - Portrait" data-full="images/recent/china-russia-024.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-024.jpg" alt="Vanya - Portrait" data-full="images/recent/china-russia-024.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Portrait</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-025.jpg" alt="Katya - Portrait" data-full="images/recent/china-russia-025.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-025.jpg" alt="Katya - Portrait" data-full="images/recent/china-russia-025.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Portrait</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-026.jpg" alt="Katya - Portrait" data-full="images/recent/china-russia-026.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-026.jpg" alt="Katya - Portrait" data-full="images/recent/china-russia-026.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Portrait</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-027.jpg" alt="Katya - Playful" data-full="images/recent/china-russia-027.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-027.jpg" alt="Katya - Playful" data-full="images/recent/china-russia-027.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Playful</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-028.jpg" alt="Katya - Smile" data-full="images/recent/china-russia-028.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-028.jpg" alt="Katya - Smile" data-full="images/recent/china-russia-028.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Smile</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-029.jpg" alt="Katya - Natural" data-full="images/recent/china-russia-029.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-029.jpg" alt="Katya - Natural" data-full="images/recent/china-russia-029.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Natural</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-030.jpg" alt="Vanya - Portrait" data-full="images/recent/china-russia-030.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-030.jpg" alt="Vanya - Portrait" data-full="images/recent/china-russia-030.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Portrait</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-031.jpg" alt="Vanya - Hair Styling" data-full="images/recent/china-russia-031.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-031.jpg" alt="Vanya - Hair Styling" data-full="images/recent/china-russia-031.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Hair Styling</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-032.jpg" alt="Vanya - Curly Hair" data-full="images/recent/china-russia-032.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-032.jpg" alt="Vanya - Curly Hair" data-full="images/recent/china-russia-032.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Curly Hair</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-033.jpg" alt="Katya - Soft Curls" data-full="images/recent/china-russia-033.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-033.jpg" alt="Katya - Soft Curls" data-full="images/recent/china-russia-033.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Soft Curls</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-034.jpg" alt="Vanya - Casual" data-full="images/recent/china-russia-034.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-034.jpg" alt="Vanya - Casual" data-full="images/recent/china-russia-034.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Casual</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-035.jpg" alt="Katya - Dandelion" data-full="images/recent/china-russia-035.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-035.jpg" alt="Katya - Dandelion" data-full="images/recent/china-russia-035.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Dandelion</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-036.jpg" alt="Vanya - Look" data-full="images/recent/china-russia-036.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-036.jpg" alt="Vanya - Look" data-full="images/recent/china-russia-036.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Look</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-037.jpg" alt="Katya - Full Body" data-full="images/recent/china-russia-037.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-037.jpg" alt="Katya - Full Body" data-full="images/recent/china-russia-037.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Full Body</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-038.jpg" alt="Katya & Vanya - Sibling Style" data-full="images/recent/china-russia-038.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-038.jpg" alt="Katya & Vanya - Sibling Style" data-full="images/recent/china-russia-038.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Sibling Style</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-039.jpg" alt="Katya - Brick Street" data-full="images/recent/china-russia-039.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-039.jpg" alt="Katya - Brick Street" data-full="images/recent/china-russia-039.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Brick Street</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-040.jpg" alt="Katya - Train Platform" data-full="images/recent/china-russia-040.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-040.jpg" alt="Katya - Train Platform" data-full="images/recent/china-russia-040.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Train Platform</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-041.jpg" alt="Katya - Station" data-full="images/recent/china-russia-041.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-041.jpg" alt="Katya - Station" data-full="images/recent/china-russia-041.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Station</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-042.jpg" alt="Vanya - Train Platform" data-full="images/recent/china-russia-042.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-042.jpg" alt="Vanya - Train Platform" data-full="images/recent/china-russia-042.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Train Platform</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-043.jpg" alt="Katya - Train Window" data-full="images/recent/china-russia-043.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-043.jpg" alt="Katya - Train Window" data-full="images/recent/china-russia-043.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Train Window</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-044.jpg" alt="Katya - Khabarovsk Station" data-full="images/recent/china-russia-044.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-044.jpg" alt="Katya - Khabarovsk Station" data-full="images/recent/china-russia-044.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Khabarovsk Station</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-045.jpg" alt="Vanya - Outdoor" data-full="images/recent/china-russia-045.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-045.jpg" alt="Vanya - Outdoor" data-full="images/recent/china-russia-045.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Outdoor</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-046.jpg" alt="Katya & Vanya - Playground" data-full="images/recent/china-russia-046.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-046.jpg" alt="Katya & Vanya - Playground" data-full="images/recent/china-russia-046.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Playground</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-047.jpg" alt="Katya & Vanya - Dinner" data-full="images/recent/china-russia-047.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-047.jpg" alt="Katya & Vanya - Dinner" data-full="images/recent/china-russia-047.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Dinner</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-048.jpg" alt="Katya - Cafe" data-full="images/recent/china-russia-048.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-048.jpg" alt="Katya - Cafe" data-full="images/recent/china-russia-048.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Cafe</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-049.jpg" alt="Katya - Cafe" data-full="images/recent/china-russia-049.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-049.jpg" alt="Katya - Cafe" data-full="images/recent/china-russia-049.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Cafe</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-050.jpg" alt="Katya - Sweets" data-full="images/recent/china-russia-050.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-050.jpg" alt="Katya - Sweets" data-full="images/recent/china-russia-050.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Sweets</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-051.jpg" alt="Katya - Studio" data-full="images/recent/china-russia-051.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-051.jpg" alt="Katya - Studio" data-full="images/recent/china-russia-051.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya - Studio</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-052.jpg" alt="Katya & Vanya - Harbin" data-full="images/recent/china-russia-052.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-052.jpg" alt="Katya & Vanya - Harbin" data-full="images/recent/china-russia-052.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Katya & Vanya - Harbin</figcaption>
     </figure>
     <figure class="recent-item">
-      <img src="images/recent/thumbs/china-russia-053.jpg" alt="Vanya - Dandelion" data-full="images/recent/china-russia-053.jpg" loading="lazy" decoding="async" />
+      <img data-src="images/recent/thumbs/china-russia-053.jpg" alt="Vanya - Dandelion" data-full="images/recent/china-russia-053.jpg" loading="lazy" decoding="async" />
       <figcaption class="recent-label">Vanya - Dandelion</figcaption>
     </figure>
   </div>
@@ -702,6 +732,8 @@
   <div class="footer-copy">Imus, Cavite, Philippines &nbsp;·&nbsp; Managed by Parents &nbsp;·&nbsp; &copy; 2026</div>
 </footer>
 
+</div>
+
 <div class="lightbox-backdrop" id="lightbox" aria-hidden="true">
   <button class="lightbox-close" type="button" aria-label="Close image">x</button>
   <div class="lightbox-frame">
@@ -711,6 +743,64 @@
 </div>
 <script>
   (function () {
+    var passwordHash = 'd749a8838288f9eb7f92ab94094c4950ecc5c916d7ac064002b2bed09458913d';
+    var authKey = 'subich-morales-auth';
+    var passwordScreen = document.getElementById('password-screen');
+    var passwordForm = document.getElementById('password-form');
+    var passwordInput = document.getElementById('password-input');
+    var passwordError = document.getElementById('password-error');
+    var siteContent = document.getElementById('site-content');
+
+    function loadProtectedImages() {
+      Array.prototype.slice.call(document.querySelectorAll('img[data-src]')).forEach(function (image) {
+        image.src = image.dataset.src;
+        image.removeAttribute('data-src');
+      });
+    }
+
+    function unlockPortfolio() {
+      loadProtectedImages();
+      document.body.classList.remove('locked');
+      if (siteContent) siteContent.setAttribute('aria-hidden', 'false');
+      if (passwordScreen) passwordScreen.style.display = 'none';
+    }
+
+    function bufferToHex(buffer) {
+      return Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
+        return byte.toString(16).padStart(2, '0');
+      }).join('');
+    }
+
+    function hashPassword(value) {
+      return window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(value)).then(bufferToHex);
+    }
+
+    if (sessionStorage.getItem(authKey) === passwordHash) {
+      unlockPortfolio();
+    } else if (passwordInput) {
+      passwordInput.focus();
+    }
+
+    if (passwordForm) {
+      passwordForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        hashPassword(passwordInput.value).then(function (hash) {
+          if (hash === passwordHash) {
+            sessionStorage.setItem(authKey, passwordHash);
+            passwordInput.value = '';
+            passwordError.textContent = '';
+            unlockPortfolio();
+          } else {
+            passwordError.textContent = 'Incorrect password. Try again.';
+            passwordInput.value = '';
+            passwordInput.focus();
+          }
+        }).catch(function () {
+          passwordError.textContent = 'This browser cannot verify the password.';
+        });
+      });
+    }
+
     var lightbox = document.getElementById('lightbox');
     var lightboxImage = lightbox.querySelector('img');
     var caption = lightbox.querySelector('.lightbox-caption');
